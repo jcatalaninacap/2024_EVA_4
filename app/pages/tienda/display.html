@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mail recibido</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <header>
+
+        
+        <nav>
+
+            <h1 style="margin-right: 100px;">¡Gracias por Contactarnos!</h1>
+
+        </nav>
+    </header>
+    <main>
+
+        <section class="formulario">
+            <div class="container">
+                <br>
+                <h1>Tus datos enviados son:</h1>
+                <br>
+                <p id="nombre"></p>
+                <p id="correo"></p>
+                <p id="mensaje"></p>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2024 INACAP - Todos los derechos reservados.</p>
+        </footer>
+
+</body>
+<script>
+    // Agrega un evento que se dispara después de que el contenido del DOM se haya cargado completamente
+    document.addEventListener('DOMContentLoaded', function () {
+        // Crea una instancia de URLSearchParams para trabajar con los parámetros de la URL
+        const params = new URLSearchParams(window.location.search);
+        // Obtiene el valor del parámetro 'nombre' de la URL
+        const nombre = params.get('nombre');
+        // Obtiene el valor del parámetro 'correo' de la URL
+        const correo = params.get('correo');
+        // Obtiene el valor del parámetro 'carrera' de la URL
+        const mensaje = params.get('mensaje');
+        // Establece el contenido de texto del elemento con id 'nombre' con el valor obtenido de la URL
+        document.getElementById('nombre').textContent = `Nombre : ${nombre}`;
+        // Establece el contenido de texto del elemento con id 'correo' con el valor obtenido de la URL
+        document.getElementById('correo').textContent = `Mail   : ${correo}`;
+        // Establece el contenido de texto del elemento con id 'carrera' con el valor obtenido de la URL
+        document.getElementById('mensaje').textContent = `Mensaje : ${mensaje}`;
+    });
+</script>
+
+</html>

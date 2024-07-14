@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Contract Sanity - Official Website</title>
+    <script src="js/catalogo.js" defer></script>
+    <script src="js/contacto.js" defer></script>
+    <script src="js/carrito.js" defer></script>
+    <script src="admin.js" defer></script>
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>CONTRACT SANITY</h1>
+            <p>Sitio Oficial</p>
+            <a href="#contacto" class="btn">Contacto</a>
+            <a href="#merch" class="btn" onclick="vista();">Mercancía Aquí</a>
+            <a href="#cart" class="btn" onclick="toggleCart()">Carrito (<span id="cart-count">0</span>)</a>
+        </div>
+
+        <div class="form-container">
+            <h1>Bienvenido a la Tienda</h1>
+            <button class="btn">Cerrar sesión</button>
+          </div>
+
+    </header>
+
+    <section id="news">
+        <div class="noticias">
+            <h2>ULTIMAS NOTICIAS</h2>
+            <div>
+                <h3>Nuestro nuevo álbum de estudio será inolvidable.</h3>
+                <p>"Nuestro próximo álbum, ' Contrac Sanity ', es como quitar capas de pintura de un lienzo viejo. Con
+                    cada pista, exploramos las máscaras que todos usamos, las historias que nos contamos a nosotros
+                    mismos para salir adelante.
+                    Este álbum es un verdadero corazón. Un asunto en la manga para nosotros y es probablemente el más
+                    'nosotros' que jamás hayamos sonado. Se trata de lo que sucede cuando la fachada se resquebraja y no
+                    te queda nada más que la verdad. Nada más que tu verdadero yo. para que todos lo escuchen y tal vez
+                    se vean en él, tal como lo hacemos nosotros”.</p>
+
+            </div>
+    </section>
+    <section id="merch"> 
+        <div id="casilla">
+            <h2>MERCANCIA</h2>
+            <div class="filters">
+                <label for="category">Categoría:</label>
+                <select id="category" onchange="filterProducts()">
+                    <option value="all">Todos</option>
+                    <option value="camisetas">Camisetas</option>
+                    <option value="polerones">Polerones</option>
+                    <option value="wristband">Muñequeras</option>
+                </select>
+            </div>
+            <div class="gallery" id="product-list">
+                <p id="C001"></p>
+            </div>  
+        </div>
+        <p id="C003"></p>
+        <p id="C005"></p>
+    </section>
+    <div></div>
+    <section id="contacto">
+        <div class="container">
+            <h2>CONTACTO</h2>
+            <form id="dataForm">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <label for="correo">Email:</label>
+                <input type="email" id="correo" name="correo">
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+        <div></div>
+    </section>
+
+    <footer>
+        <div class="containerFooter">
+            <p>&copy; 2024 Contrac Sanity. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Carrito -->
+    <div id="cart" class="cart">
+        <div class="cart-content">
+            <span class="close" onclick="toggleCart()">&times;</span>
+            <h2>Carrito de Compras</h2>
+            <div id="cart-items"></div>
+            <p id="cart-total"></p>
+            <button onclick="checkout()">Realizar Pedido</button>
+        </div>
+    </div>
+</body>
+
+<script>
+    // Evento que se dispara cuando el usuario sale del campo de correo
+    document.getElementById('correo').addEventListener('blur', function () {
+        validarEmail(this.value);
+    });
+
+    // Selecciona el elemento con id 'dataForm' y agrega un 'event listener' que escucha el evento 'submit'
+    document.getElementById('dataForm').addEventListener('submit', function (event) {
+        // Previene el comportamiento por defecto del evento 'submit', que es recargar la página
+        event.preventDefault();
+        // Obtiene el valor del campo de entrada con id 'nombre' y lo almacena en la variable 'nombre'
+        const nombre = document.getElementById('nombre').value;
+        //-------------------------------------------------------
+        // Obtiene el valor del campo de entrada con id 'correo' y lo almacena en la variable 'correo'
+        const correo = document.getElementById('correo').value;
+
+        // Llamar a la función validarEmail y mostrar resultado en consola
+        if (validarEmail(correo)) {
+            // Muestra un mensaje de éxito o redirige a la página de agradecimiento
+            alert('¡Formulario enviado con éxito!');
+        } else {
+            alert('El correo no es válido!  ingrese mail nuevamente.');
+        }
+        // Redirige la ventana actual a 'display.html' con los valores de 'nombre', 'correo' y 'carrera' como parámetros de la URL
+        // Utiliza encodeURIComponent para asegurar que los caracteres especiales sean codificados correctamente en la URL
+
+        window.location.href = `/tienda`;
+
+    });
+</script>
+</html>
